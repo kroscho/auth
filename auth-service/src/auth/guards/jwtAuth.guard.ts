@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { isPublic } from '../../../libs/common/decorators';
+import { isPublic } from '../../../libs/common/src/decorators';
 import { Observable } from 'rxjs';
 
 @Injectable()

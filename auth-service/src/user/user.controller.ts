@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from './responses';
-import { CurrentUser, Roles } from '../../libs/common/decorators';
+import { CurrentUser, Roles } from '../../libs/common/src/decorators';
 import { JwtPayload } from '../auth/interfaces';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Role } from '@prisma/client';
