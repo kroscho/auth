@@ -7,10 +7,11 @@ import { UserModule } from '../user/user.module';
 import { jwtModuleAsyncOptions } from './config';
 import { STRATEGIES } from './strategies';
 import { GUARDS } from './guards';
+import { TokenService } from './token.service';
 
 @Module({
     imports: [PassportModule, JwtModule.registerAsync(jwtModuleAsyncOptions()), UserModule],
-    providers: [AuthService, ...STRATEGIES, ...GUARDS],
+    providers: [AuthService, TokenService, ...STRATEGIES, ...GUARDS],
     controllers: [AuthController],
 })
 export class AuthModule {}

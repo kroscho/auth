@@ -10,11 +10,15 @@ import { convertToSecondsUtil } from '../../libs/common/src/utils';
 
 @Injectable()
 export class UserService {
+    private jwtExp: string;
+
     constructor(
         private readonly prismaService: PrismaService,
         @Inject(CACHE_MANAGER) private cacheManager: Cache,
-        private readonly configService: ConfigService,
-    ) {}
+        configService: ConfigService,
+    ) {
+        this.jwtExp = configService.get('JWT_EXP');
+    }
 
     save(user: Partial<User>): Promise<User> {
         const hashedPassword = this.hashPassword(user.password);
@@ -42,7 +46,7 @@ export class UserService {
             if (!user) {
                 return null;
             }
-            await this.cacheManager.set(idOrEmail, user, convertToSecondsUtil(this.configService.get('JWT_EXP')));
+            await this.cacheManager.set(idOrEmail, user, convertToSecondsUtil(this.jwtExp));
             return user;
         }
         return userCache;

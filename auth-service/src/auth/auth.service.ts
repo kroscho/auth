@@ -3,11 +3,8 @@ import { UserService } from '../user/user.service';
 import { LoginDto, RegisterDto } from './dto';
 import { Tokens } from './interfaces';
 import { compareSync } from 'bcrypt';
-import { Token, User } from '@prisma/client';
-import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../prisma/prisma.service';
-import { v4 } from 'uuid';
-import { add } from 'date-fns';
+import { User } from '@prisma/client';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +12,7 @@ export class AuthService {
 
     constructor(
         private readonly userService: UserService,
-        private readonly jwtService: JwtService,
-        private readonly prismaService: PrismaService,
+        private readonly tokenService: TokenService,
     ) {}
 
     async register(dto: RegisterDto) {
@@ -42,65 +38,6 @@ export class AuthService {
             throw new UnauthorizedException('Не верный логин или пароль');
         }
 
-        return this.generateTokens(user, userAgent);
-    }
-
-    async refreshTokens(refreshToken: string, userAgent: string) {
-        const token = await this.prismaService.token.findUnique({
-            where: {
-                token: refreshToken,
-            },
-        });
-        if (!token) {
-            throw new UnauthorizedException();
-        }
-        await this.prismaService.token.delete({ where: { token: refreshToken } });
-        if (new Date(token.exp) < new Date()) {
-            throw new UnauthorizedException();
-        }
-        const user = await this.userService.findOne(token.userId);
-        return this.generateTokens(user, userAgent);
-    }
-
-    private async generateTokens(user: User, userAgent: string): Promise<Tokens> {
-        const accessToken =
-            'Bearer ' +
-            this.jwtService.sign({
-                id: user.id,
-                email: user.email,
-                roles: user.roles,
-            });
-
-        const refreshToken = await this.getRefreshToken(user.id, userAgent);
-
-        return { accessToken, refreshToken };
-    }
-
-    private async getRefreshToken(userId: string, userAgent: string): Promise<Token> {
-        const existToken = await this.prismaService.token.findFirst({
-            where: {
-                userId,
-                userAgent,
-            },
-        });
-        const token = existToken?.token ?? '';
-
-        return this.prismaService.token.upsert({
-            where: { token },
-            update: {
-                token: v4(),
-                exp: add(new Date(), { months: 1 }),
-            },
-            create: {
-                token: v4(),
-                exp: add(new Date(), { months: 1 }),
-                userId,
-                userAgent,
-            },
-        });
-    }
-
-    deleteRefreshToken(token: string) {
-        return this.prismaService.token.delete({ where: { token } });
+        return this.tokenService.generateTokens(user, userAgent);
     }
 }

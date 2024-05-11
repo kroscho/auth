@@ -17,16 +17,22 @@ import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { Cookie, Public, UserAgent } from '../../libs/common/src/decorators';
 import { UserResponse } from '../user/responses';
+import { TokenService } from './token.service';
 
 const REFRESH_TOKEN = 'refreshToken';
 
 @Public()
 @Controller('auth')
 export class AuthController {
+    private nodeEnv: string;
+
     constructor(
         private readonly authService: AuthService,
-        private readonly configService: ConfigService,
-    ) {}
+        private readonly tokenService: TokenService,
+        configService: ConfigService,
+    ) {
+        this.nodeEnv = configService.get('NODE_ENV', 'development');
+    }
 
     @UseInterceptors(ClassSerializerInterceptor)
     @Post('register')
@@ -42,8 +48,6 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() dto: LoginDto, @Res() res: Response, @UserAgent() userAgent: string) {
-        console.log(userAgent);
-
         const tokens = await this.authService.login(dto, userAgent);
         if (!tokens) {
             throw new BadRequestException(`Не получается войти с данными ${JSON.stringify(dto)}`);
@@ -57,7 +61,7 @@ export class AuthController {
             res.sendStatus(HttpStatus.OK);
             return;
         }
-        await this.authService.deleteRefreshToken(refreshToken);
+        await this.tokenService.deleteRefreshToken(refreshToken);
         res.cookie(REFRESH_TOKEN, '', { httpOnly: true, secure: true, expires: new Date() });
         res.sendStatus(HttpStatus.OK);
     }
@@ -71,7 +75,7 @@ export class AuthController {
         if (!refreshToken) {
             throw new UnauthorizedException();
         }
-        const tokens = await this.authService.refreshTokens(refreshToken, userAgent);
+        const tokens = await this.tokenService.refreshTokens(refreshToken, userAgent);
         if (!tokens) {
             throw new UnauthorizedException();
         }
@@ -87,7 +91,7 @@ export class AuthController {
             // все запросы должны отправляться с того же сайта, на котором находимся, чтоб не было попыток делать запрос с другого браузера
             sameSite: 'lax',
             expires: new Date(tokens.refreshToken.exp),
-            secure: this.configService.get('NODE_ENV', 'development') === 'production',
+            secure: this.nodeEnv === 'production',
             // указываем, что куки доступны на всех страницах сайта
             path: '/',
         });
