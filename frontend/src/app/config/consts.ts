@@ -1,0 +1,22 @@
+export const HEADER = {
+  HEADER_HEIGHT: 144,
+};
+
+export const FOOTER = {
+  FOOTER_HEIGHT: 71,
+  CONTENT_WIDTH: 1000,
+};
+
+export const GENERAL = {
+  CONTENT_MAX_WIDTH: 1500,
+  CONTENT_PADDING_X: '24px',
+  DRAWER_WIDTH_LG: 450,
+  DRAWER_WIDTH_SM: 300,
+};
+
+export const ICON = {
+  CONTAINER_SIZE_LG: 32,
+  ICON_SIZE_LG: 24,
+  CONTAINER_SIZE_SM: 26,
+  ICON_SIZE_SM: 18,
+};
