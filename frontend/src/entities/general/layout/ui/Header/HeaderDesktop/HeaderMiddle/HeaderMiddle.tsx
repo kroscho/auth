@@ -1,0 +1,73 @@
+import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { Box, Link, List, ListItem, Stack, Typography } from '@mui/material';
+import { IconWrapper, Logo } from '../../../../../../../shared/ui/kit';
+import { HEADER_DESKTOP_MDL_LEFT } from '../../../../lib';
+
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
+import { useStyles } from './styles';
+
+interface HeaderMiddleProps {
+  ThemeSwitcher: FC;
+}
+
+export const HeaderMiddle: FC<HeaderMiddleProps> = ({ ThemeSwitcher }) => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.header__mdl}>
+      <Box className={classes.header__mdl_content}>
+        <Box className={classes.header__mdl_left}>
+          <List className={classes.links}>
+            {HEADER_DESKTOP_MDL_LEFT.map((headItem) => (
+              <ListItem key={headItem.id}>
+                <Link component={RouterLink} to={headItem.path}>
+                  <Typography variant="body1" noWrap>
+                    {headItem.name}
+                  </Typography>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        <Box className={classes.header__mdl_center}>
+          <Logo />
+        </Box>
+        <Box className={classes.header__mdl_right}>
+          <List className={classes.links}>
+            <ListItem>
+              <ThemeSwitcher />
+            </ListItem>
+            <ListItem>
+              <Link component={RouterLink} to="/" underline="none" color="inherit">
+                <Stack direction="row" alignItems="center" gap={1}>
+                  <IconWrapper Icon={PersonOutlinedIcon} />
+                  <Typography variant="body1" noWrap>
+                    Профиль
+                  </Typography>
+                </Stack>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link component={RouterLink} to="/" underline="none" color="inherit">
+                <Stack direction="row" alignItems="center" gap={1}>
+                  <Box position="relative" display="flex" alignItems="center">
+                    <IconWrapper Icon={ShoppingCartOutlinedIcon} />
+                    <Box component={'span'} className={classes.icon_count}>
+                      <Typography fontSize="10px">0</Typography>
+                    </Box>
+                  </Box>
+                  <Typography variant="body1" noWrap>
+                    Корзина
+                  </Typography>
+                </Stack>
+              </Link>
+            </ListItem>
+          </List>
+        </Box>
+      </Box>
+    </Box>
+  );
+};

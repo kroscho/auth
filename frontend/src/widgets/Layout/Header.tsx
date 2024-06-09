@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Typography, styled } from '@mui/material';
-import { HeaderTemplate } from '../../entities/general/layout/Header/Header';
+import { HeaderTemplate } from '../../entities/general/layout/ui/Header/Header';
+import { SearchInput, ThemeSwitcher } from '../../features/layout';
 
 // ----------------------------------------------------------------------
 
@@ -35,5 +36,5 @@ export const Header = () => {
   // const [scrollPos] = useScrollPosition();
   // const { isLight, toggleTheme } = useTheme();
 
-  return <HeaderTemplate />;
+  return <HeaderTemplate ThemeSwitcher={ThemeSwitcher} Search={SearchInput} />;
 };
