@@ -2,24 +2,25 @@ import { FC } from 'react';
 import { HeaderTop } from './HeaderTop/HeaderTop';
 import { HeaderMiddle } from './HeaderMiddle/HeaderMiddle';
 import { HeaderBottom } from './HeaderBottom/HeaderBottom';
-import { HeaderFixed } from './HeaderFixed/HeaderFixed';
+import { BasketProps } from '../../../../../../features/layout/ui/Basket/Basket';
 
 import { useStyles } from './styles';
 
 interface HeaderDesktopProps {
   ThemeSwitcher: FC;
   Search: FC;
+  Basket: FC<BasketProps>;
+  RequestCallButton: FC;
 }
 
-export const HeaderDesktop: FC<HeaderDesktopProps> = ({ ThemeSwitcher, Search }) => {
+export const HeaderDesktop: FC<HeaderDesktopProps> = ({ ThemeSwitcher, Search, Basket, RequestCallButton }) => {
   const classes = useStyles();
 
   return (
     <header className={classes.header}>
-      <HeaderTop />
-      <HeaderMiddle ThemeSwitcher={ThemeSwitcher} />
-      <HeaderBottom Search={Search} />
-      <HeaderFixed ThemeSwitcher={ThemeSwitcher} Search={Search} />
+      <HeaderTop RequestCallButton={RequestCallButton} />
+      <HeaderMiddle ThemeSwitcher={ThemeSwitcher} Basket={Basket} />
+      <HeaderBottom Search={Search} ThemeSwitcher={ThemeSwitcher} Basket={Basket} />
     </header>
   );
 };

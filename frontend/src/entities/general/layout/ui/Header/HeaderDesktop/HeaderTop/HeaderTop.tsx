@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Button, Link, List, ListItem, Stack, Typography } from '@mui/material';
+import { Box, Link, List, ListItem, Stack, Typography } from '@mui/material';
 import { IconWrapper } from '../../../../../../../shared/ui/kit';
 import { HEADER_DESKTOP_TOP_RIGHT } from '../../../../lib';
 
@@ -8,7 +8,11 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 
 import { useStyles } from './styles';
 
-export const HeaderTop: FC = () => {
+interface HeaderTopProps {
+  RequestCallButton: FC;
+}
+
+export const HeaderTop: FC<HeaderTopProps> = ({ RequestCallButton }) => {
   const classes = useStyles();
 
   return (
@@ -27,16 +31,14 @@ export const HeaderTop: FC = () => {
                 </Typography>
               </Link>
               <span>—</span>
-              <Button variant="text" color="inherit" size="medium" className={classes.button}>
-                Заказать звонок
-              </Button>
+              <RequestCallButton />
             </Stack>
           </Box>
         </Stack>
         <List className={classes.links}>
           {HEADER_DESKTOP_TOP_RIGHT.map((headItem) => (
-            <ListItem key={headItem.id}>
-              <Link component={RouterLink} to={headItem.path}>
+            <ListItem key={headItem.id} sx={{ height: '100%' }}>
+              <Link component={RouterLink} to={headItem.path} className={classes.listItem}>
                 <Typography variant="body1" noWrap>
                   {headItem.name}
                 </Typography>

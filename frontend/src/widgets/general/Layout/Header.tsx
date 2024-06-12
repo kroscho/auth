@@ -1,8 +1,7 @@
+import React from 'react';
 import { Typography, styled } from '@mui/material';
 import { HeaderLogo } from '../../../shared/components';
-import { useScrollPosition } from '../../../shared/hooks';
-import React from 'react';
-import { useTheme } from '../../../shared/lib/hooks';
+import { useScrollPosition, useTheme } from '../../../shared/lib/hooks';
 import { GENERAL, HEADER } from '../../../app/config';
 
 // ----------------------------------------------------------------------

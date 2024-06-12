@@ -6,16 +6,16 @@ export const useStyles = makeStyles((theme: Theme) => {
 
   return {
     logo: {
-      width: '60px',
-      height: '60px',
+      width: '55px',
+      height: '55px',
       objectFit: 'contain',
       backgroundColor: 'white',
       border: `1px solid  ${isLight ? theme.palette.grey[300] : alpha(theme.palette.grey[300], 0.1)}`,
       borderRadius: '50%',
 
       [theme.breakpoints.down('lg')]: {
-        width: '50px',
-        height: '50px',
+        width: '45px',
+        height: '45px',
       },
     },
   };

@@ -32,15 +32,17 @@ export const useStyles = makeStyles((theme: Theme) => {
       flexDirection: 'row',
       alignItems: 'center',
       gap: '30px',
+      height: '100%',
 
       [theme.breakpoints.down('lg')]: {
         gap: '16px',
       },
     },
-    button: {
-      '&:hover': {
-        color: isLight ? theme.palette.primary.light : theme.palette.primary.main,
-      },
+
+    listItem: {
+      display: 'flex',
+      alignItems: 'center',
+      height: '100%',
     },
   };
 });

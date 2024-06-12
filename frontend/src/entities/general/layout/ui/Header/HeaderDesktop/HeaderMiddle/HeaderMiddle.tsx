@@ -3,17 +3,18 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Link, List, ListItem, Stack, Typography } from '@mui/material';
 import { IconWrapper, Logo } from '../../../../../../../shared/ui/kit';
 import { HEADER_DESKTOP_MDL_LEFT } from '../../../../lib';
+import { BasketProps } from '../../../../../../../features/layout/ui/Basket/Basket';
 
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import { useStyles } from './styles';
 
 interface HeaderMiddleProps {
   ThemeSwitcher: FC;
+  Basket: FC<BasketProps>;
 }
 
-export const HeaderMiddle: FC<HeaderMiddleProps> = ({ ThemeSwitcher }) => {
+export const HeaderMiddle: FC<HeaderMiddleProps> = ({ ThemeSwitcher, Basket }) => {
   const classes = useStyles();
 
   return (
@@ -51,19 +52,7 @@ export const HeaderMiddle: FC<HeaderMiddleProps> = ({ ThemeSwitcher }) => {
               </Link>
             </ListItem>
             <ListItem>
-              <Link component={RouterLink} to="/" underline="none" color="inherit">
-                <Stack direction="row" alignItems="center" gap={1}>
-                  <Box position="relative" display="flex" alignItems="center">
-                    <IconWrapper Icon={ShoppingCartOutlinedIcon} />
-                    <Box component={'span'} className={classes.icon_count}>
-                      <Typography fontSize="10px">0</Typography>
-                    </Box>
-                  </Box>
-                  <Typography variant="body1" noWrap>
-                    Корзина
-                  </Typography>
-                </Stack>
-              </Link>
+              <Basket />
             </ListItem>
           </List>
         </Box>

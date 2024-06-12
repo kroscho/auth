@@ -4,10 +4,14 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme: Theme) => {
   return {
     search_input: {
-      maxWidth: '320px',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      maxWidth: '420px',
+      width: '100%',
 
       [theme.breakpoints.down('lg')]: {
-        maxWidth: '180px',
+        maxWidth: '320px',
       },
 
       [theme.breakpoints.down('md')]: {
