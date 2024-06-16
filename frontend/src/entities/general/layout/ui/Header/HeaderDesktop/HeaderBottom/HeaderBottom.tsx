@@ -23,7 +23,7 @@ export const HeaderBottom: FC<HeaderBottomProps> = ({ Search, ThemeSwitcher }) =
 
   const [scrollPos] = useScrollPosition();
   const isDesktop = useResponsive('up', 'lg');
-  const headerHeight = isDesktop ? 168 : 137;
+  const headerHeight = isDesktop ? 180 : 150;
   const isSticky = scrollPos > headerHeight;
 
   return (

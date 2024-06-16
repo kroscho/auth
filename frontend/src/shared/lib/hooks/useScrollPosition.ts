@@ -1,3 +1,4 @@
+import { debounce } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 export const useScrollPosition = () => {
@@ -15,10 +16,11 @@ export const useScrollPosition = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const debounceScroll = debounce(handleScroll, 50);
+    window.addEventListener('scroll', debounceScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', debounceScroll);
     };
   }, []);
 
