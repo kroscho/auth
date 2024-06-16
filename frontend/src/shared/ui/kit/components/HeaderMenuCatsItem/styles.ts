@@ -1,7 +1,7 @@
 import { Theme, styled } from '@mui/material';
-import { GENERAL } from '../../../../../../../../app/config';
 import { makeStyles } from '@mui/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { GENERAL } from '../../../../../app/config';
 
 interface Props {
   isshown: string;
@@ -31,12 +31,12 @@ export const LinkStyled = styled(RouterLink)<Props>(({ isshown, theme }) => ({
 }));
 
 interface MenuCatsProps {
-  isSticky: boolean;
+  isFixed: boolean;
 }
 
-export const MenuCatsStyled = styled('div')<MenuCatsProps>(({ isSticky, theme }) => ({
+export const MenuCatsStyled = styled('div')<MenuCatsProps>(({ isFixed, theme }) => ({
   position: 'absolute',
-  top: isSticky ? 69 : 50,
+  top: isFixed ? 69 : 50,
   left: 0,
   width: '100%',
   backgroundColor: theme.palette.background.default,
@@ -45,7 +45,7 @@ export const MenuCatsStyled = styled('div')<MenuCatsProps>(({ isSticky, theme })
   boxShadow: theme.shadows[3],
 
   [theme.breakpoints.down('lg')]: {
-    top: isSticky ? 51 : 38,
+    top: isFixed ? 51 : 38,
   },
 }));
 

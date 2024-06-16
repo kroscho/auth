@@ -17,8 +17,8 @@ export const MenuCatsItem: FC<MenuCatsItemProps> = ({ headItem }) => {
   const [isShown, setIsShown] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isShown && scrollPos > headerHeight) setIsShown(false);
+    if (isShown && scrollPos < headerHeight) setIsShown(false);
   }, [headerHeight, isShown, scrollPos]);
 
-  return <HeaderMenuCatsItem headItem={headItem} isFixed={false} isShown={isShown} setIsShown={setIsShown} />;
+  return <HeaderMenuCatsItem headItem={headItem} isFixed={true} isShown={isShown} setIsShown={setIsShown} />;
 };

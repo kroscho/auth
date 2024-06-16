@@ -1,6 +1,27 @@
-import { Theme } from '@mui/material';
+import { Theme, styled } from '@mui/material';
 import { GENERAL } from '../../../../../../../app/config';
 import { makeStyles } from '@mui/styles';
+
+interface Props {
+  isSticky: boolean;
+}
+
+export const HeaderStyled = styled('div')<Props>(({ isSticky, theme }) => ({
+  position: 'fixed',
+  top: !isSticky ? '-300px' : 0,
+  left: 0,
+  display: 'flex',
+  width: '100%',
+  height: '81px',
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[6],
+  transition: 'top 0.6s ease-in-out',
+  zIndex: 6,
+
+  [theme.breakpoints.down('lg')]: {
+    height: '61px',
+  },
+}));
 
 export const useStyles = makeStyles((theme: Theme) => {
   const isLight = theme.palette.mode === 'light';
@@ -23,10 +44,10 @@ export const useStyles = makeStyles((theme: Theme) => {
       maxWidth: GENERAL.CONTENT_MAX_WIDTH,
       justifyContent: 'space-between',
       margin: '0 auto',
-      padding: `0 ${GENERAL.CONTENT_PADDING_X}`,
+      padding: `12px ${GENERAL.CONTENT_PADDING_X}`,
 
       [theme.breakpoints.down('lg')]: {
-        padding: `0 ${GENERAL.CONTENT_PADDING_X}`,
+        padding: `10px ${GENERAL.CONTENT_PADDING_X}`,
       },
     },
     links: {
