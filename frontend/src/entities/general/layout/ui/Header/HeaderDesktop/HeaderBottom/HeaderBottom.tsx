@@ -36,7 +36,7 @@ export const HeaderBottom: FC<HeaderBottomProps> = ({ Search, ThemeSwitcher }) =
             </ListItem>
           )}
           {HEADER_DESKTOP_BOTTOM.map((headItem) => (
-            <MenuCatsItem key={headItem.nav.id} headItem={headItem} cats={headItem.categories} />
+            <MenuCatsItem key={headItem.nav.id} headItem={headItem} />
           ))}
           <ListItem className={classes.listItem}>
             <Link component={RouterLink} to="/" className={classes.link}>

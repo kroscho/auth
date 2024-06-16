@@ -50,9 +50,20 @@ export const MenuCatsStyled = styled('div')<MenuCatsProps>(({ isSticky, theme })
 }));
 
 export const useStyles = makeStyles((theme: Theme) => {
+  const isLight = theme.palette.mode === 'light';
+
   return {
     listItem: {
       height: '100%',
+    },
+
+    menu_cats_container: {
+      display: 'flex',
+      width: '100%',
+      height: '100%',
+      maxWidth: GENERAL.CONTENT_MAX_WIDTH,
+      margin: '0 auto',
+      padding: `0 ${GENERAL.CONTENT_PADDING_X}`,
     },
 
     menu_cats_content: {
@@ -60,10 +71,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       flexDirection: 'row',
       width: '100%',
       height: '100%',
-      maxWidth: GENERAL.CONTENT_MAX_WIDTH,
-      justifyContent: 'space-between',
-      margin: '0 auto',
-      padding: `0 ${GENERAL.CONTENT_PADDING_X}`,
+      alignItems: 'start',
+      rowGap: '40px',
     },
 
     menu_cats_links: {
@@ -82,6 +91,22 @@ export const useStyles = makeStyles((theme: Theme) => {
     title: {
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
+    },
+
+    titleImgContainer: {
+      maxWidth: '60px',
+      height: '23px',
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: isLight ? theme.palette.grey[300] : theme.palette.grey[700],
+      borderRadius: '4px',
+      padding: '4px',
+    },
+
+    titleImg: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain',
     },
 
     sizeItem: {

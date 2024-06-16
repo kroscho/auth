@@ -6,6 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import { useStyles } from './styles';
+import { useResponsive } from '../../../../shared/lib/hooks';
 
 export interface BasketProps {
   withText?: boolean;
@@ -14,39 +15,60 @@ export interface BasketProps {
 export const Basket: FC<BasketProps> = ({ withText = true }) => {
   const classes = useStyles();
   const [isShown, setIsShown] = useState<boolean>(false);
+  const isDesktop = useResponsive('up', 'md');
 
-  return (
-    <Box position="relative" height="100%" onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
-      <Link component={RouterLink} to="/" underline="none" color="inherit">
-        <Stack direction="row" alignItems="center" gap={1}>
-          <Box position="relative" display="flex" alignItems="center">
-            <IconWrapper Icon={ShoppingCartOutlinedIcon} />
-            <Box component={'span'} className={classes.icon_count}>
-              <Typography fontSize="10px">0</Typography>
+  if (isDesktop)
+    return (
+      <Box
+        position="relative"
+        height="100%"
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
+      >
+        <Link component={RouterLink} to="/" underline="none" color="inherit">
+          <Stack direction="row" alignItems="center" gap={1}>
+            <Box position="relative" display="flex" alignItems="center">
+              <IconWrapper Icon={ShoppingCartOutlinedIcon} />
+              <Box component={'span'} className={classes.icon_count}>
+                <Typography fontSize="10px">0</Typography>
+              </Box>
             </Box>
-          </Box>
-          {withText && (
-            <Typography variant="body1" noWrap>
-              Корзина
-            </Typography>
-          )}
-        </Stack>
-      </Link>
+            {withText && (
+              <Typography variant="body1" noWrap>
+                Корзина
+              </Typography>
+            )}
+          </Stack>
+        </Link>
 
-      <Fade in={isShown} timeout={250}>
-        <Box className={classes.container}>
-          <Box className={classes.iconContainer}>
-            <ShoppingCartOutlinedIcon sx={{ width: '50px', height: '50px' }} />
+        <Fade in={isShown} timeout={250}>
+          <Box className={classes.container}>
+            <Box className={classes.iconContainer}>
+              <ShoppingCartOutlinedIcon sx={{ width: '50px', height: '50px' }} />
+            </Box>
+            <Typography className={classes.title}>Ваша корзина пуста</Typography>
+            <Typography className={classes.body}>
+              Исправить это просто: выберите в каталоге интересующий товар и нажмите кнопку «В корзину».
+            </Typography>
+            <Button component={RouterLink} to="/" variant="contained">
+              В каталог
+            </Button>
           </Box>
-          <Typography className={classes.title}>Ваша корзина пуста</Typography>
-          <Typography className={classes.body}>
-            Исправить это просто: выберите в каталоге интересующий товар и нажмите кнопку «В корзину».
-          </Typography>
-          <Button component={RouterLink} to="/" variant="contained">
-            В каталог
-          </Button>
+        </Fade>
+      </Box>
+    );
+  else
+    return (
+      <Link component={RouterLink} to="/" className={classes.linkMob}>
+        <Box position="relative" display="flex" alignItems="center">
+          <IconWrapper Icon={ShoppingCartOutlinedIcon} />
+          <Box component={'span'} className={classes.icon_count}>
+            <Typography fontSize="10px">0</Typography>
+          </Box>
         </Box>
-      </Fade>
-    </Box>
-  );
+        <Typography variant="body2" noWrap>
+          Корзина
+        </Typography>
+      </Link>
+    );
 };

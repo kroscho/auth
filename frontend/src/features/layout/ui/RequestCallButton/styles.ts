@@ -51,5 +51,12 @@ export const useStyles = makeStyles((theme: Theme) => {
       textAlign: 'center',
       lineHeight: 1.5,
     },
+
+    butText: {
+      [theme.breakpoints.down('md')]: {
+        fontSize: '13px',
+        textTransform: 'uppercase',
+      },
+    },
   };
 });

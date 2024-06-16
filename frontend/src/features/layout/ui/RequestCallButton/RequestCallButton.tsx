@@ -35,7 +35,7 @@ export const RequestCallButton: FC = () => {
   return (
     <Fragment>
       <Button variant="text" color="inherit" size="medium" onClick={() => setOpen(true)}>
-        Заказать звонок
+        <Typography className={classes.butText}>Заказать звонок</Typography>
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box component={'form'} onSubmit={onSend} className={classes.modal}>

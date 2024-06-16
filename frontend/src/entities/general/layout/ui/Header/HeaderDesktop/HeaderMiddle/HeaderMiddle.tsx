@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Link, List, ListItem, Stack, Typography } from '@mui/material';
 import { IconWrapper, Logo } from '../../../../../../../shared/ui/kit';
 import { HEADER_DESKTOP_MDL_LEFT } from '../../../../lib';
-import { BasketProps } from '../../../../../../../features/layout/ui/Basket/Basket';
+import { BasketProps } from '../../../../../../../features/layout';
 
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 

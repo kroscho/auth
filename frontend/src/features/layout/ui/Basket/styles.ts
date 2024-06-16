@@ -64,5 +64,23 @@ export const useStyles = makeStyles((theme: Theme) => {
       textAlign: 'center',
       marginBottom: '20px',
     },
+
+    linkMob: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      cursor: 'pointer',
+      transition: 'color 250ms',
+      backgroundColor: 'transparent',
+      color: theme.palette.text.primary,
+      padding: 0,
+
+      '&:hover': {
+        color: theme.palette.primary.main,
+        backgroundColor: 'transparent',
+      },
+    },
   };
 });

@@ -25,7 +25,12 @@ export const HeaderTemplate: FC<HeaderTemplateProps> = ({ ThemeSwitcher, Search,
           RequestCallButton={RequestCallButton}
         />
       ) : (
-        <HeaderMobile ThemeSwitcher={ThemeSwitcher} Search={Search} />
+        <HeaderMobile
+          ThemeSwitcher={ThemeSwitcher}
+          Search={Search}
+          RequestCallButton={RequestCallButton}
+          Basket={Basket}
+        />
       )}
     </Fragment>
   );

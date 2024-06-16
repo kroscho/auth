@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { HeaderTop } from './HeaderTop/HeaderTop';
 import { HeaderMiddle } from './HeaderMiddle/HeaderMiddle';
 import { HeaderBottom } from './HeaderBottom/HeaderBottom';
-import { BasketProps } from '../../../../../../features/layout/ui/Basket/Basket';
+import { BasketProps } from '../../../../../../features/layout';
 
 import { useStyles } from './styles';
 
