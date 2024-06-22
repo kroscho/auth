@@ -3,6 +3,7 @@ import { Header } from './Header';
 import Main from './Main';
 import { Stack } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import { Footer } from './Footer/Footer';
 
 const Layout: FC = () => {
   return (
@@ -11,6 +12,7 @@ const Layout: FC = () => {
       <Main>
         <Outlet />
       </Main>
+      <Footer />
     </Stack>
   );
 };

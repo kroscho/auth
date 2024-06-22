@@ -3,9 +3,9 @@ import { HeaderTop } from './HeaderTop/HeaderTop';
 import { HeaderMiddle } from './HeaderMiddle/HeaderMiddle';
 import { HeaderBottom } from './HeaderBottom/HeaderBottom';
 import { BasketProps } from '../../../../../../features/layout';
+import { HeaderFixed } from './HeaderFixed/HeaderFixed';
 
 import { useStyles } from './styles';
-import { HeaderFixed } from './HeaderFixed/HeaderFixed';
 
 interface HeaderDesktopProps {
   ThemeSwitcher: FC;
