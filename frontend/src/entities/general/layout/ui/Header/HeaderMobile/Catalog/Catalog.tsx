@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Box, Drawer, IconButton, Link, List, Stack, Typography } from '@mui/material';
+import { Box, IconButton, Link, List, Stack, Typography } from '@mui/material';
 import { CatWithSubCats, Cats, Tab as TabType, Tabs } from '../../../../lib';
 import { Tab } from './Tab/Tab';
 import { ListCats } from './ListCats/ListCats';
@@ -10,6 +10,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 import { useStyles } from './styles';
+import { useResponsive } from '../../../../../../../shared/lib/hooks';
 
 interface CatalogProps {
   open: boolean;
@@ -21,9 +22,10 @@ export const Catalog: FC<CatalogProps> = ({ open, onClose, RequestCallButton }) 
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState<TabType>(Tabs[0]);
   const [activeCat, setActiveCat] = useState<CatWithSubCats>();
+  const isMobile = useResponsive('down', 480);
 
   return (
-    <Drawer anchor="left" open={open} onClose={onClose}>
+    <Box className={classes.drawer} width={open ? (isMobile ? '100vw' : '375px') : '0px'}>
       <Box className={classes.container}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" className={classes.header}>
           {activeCat ? (
@@ -65,6 +67,6 @@ export const Catalog: FC<CatalogProps> = ({ open, onClose, RequestCallButton }) 
           <ContactsBlock RequestCallButton={RequestCallButton} />
         </Stack>
       </Box>
-    </Drawer>
+    </Box>
   );
 };

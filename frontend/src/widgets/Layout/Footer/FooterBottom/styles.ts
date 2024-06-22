@@ -12,7 +12,6 @@ export const useStyles = makeStyles((theme: Theme) => {
       backgroundColor: isLight ? theme.palette.grey[700] : theme.palette.grey[300],
       color: isLight ? 'white' : theme.palette.grey[800],
       padding: '15px 0',
-      borderBottom: `1px solid ${theme.palette.background.default}`,
     },
     footer__bottom_content: {
       display: 'flex',

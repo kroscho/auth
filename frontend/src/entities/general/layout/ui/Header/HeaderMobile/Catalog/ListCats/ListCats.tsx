@@ -55,7 +55,7 @@ export const ListCats: FC<ListCatsProps> = ({ items, activeCat, setActiveCat, ac
                   height={cat.heightImg}
                 />
               </Box>
-              <Typography fontSize={14} fontWeight={500}>
+              <Typography fontSize={14} fontWeight={500} noWrap>
                 {cat.name}
               </Typography>
             </Stack>

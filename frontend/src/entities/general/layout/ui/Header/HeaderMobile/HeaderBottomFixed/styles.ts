@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       width: '100%',
       height: '65px',
       backgroundColor: theme.palette.background.paper,
-      zIndex: 7,
+      zIndex: 8,
       borderTop: `1px solid ${isLight ? theme.palette.grey[300] : theme.palette.grey[500]}`,
     },
     header__btm_content: {
@@ -80,6 +80,24 @@ export const useStyles = makeStyles((theme: Theme) => {
         top: '-8px',
         right: '-8px',
       },
+    },
+
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      visibility: 'hidden',
+      opacity: 0,
+      background: `rgba(0, 0, 0, ${isLight ? 0.36 : 0.61})`,
+      transition: 'opacity 0.25s linear, visibility 0.25s linear',
+      zIndex: 6,
+    },
+
+    overlay_open: {
+      visibility: 'visible',
+      opacity: 1,
     },
   };
 });

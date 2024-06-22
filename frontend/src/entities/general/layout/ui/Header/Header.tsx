@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useEffect } from 'react';
 import { HeaderDesktop } from './HeaderDesktop/HeaderDesktop';
 import { HeaderMobile } from './HeaderMobile/HeaderMobile';
 import { BasketProps } from '../../../../../features/layout/ui/Basket/Basket';
@@ -14,6 +14,12 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: FC<HeaderTemplateProps> = ({ ThemeSwitcher, Search, Basket, RequestCallButton }) => {
   const isDesktop = useResponsive('up', 'md');
+
+  useEffect(() => {
+    if (isDesktop && document.body.style.overflowY === 'hidden') {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [isDesktop]);
 
   return (
     <Fragment>

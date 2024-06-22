@@ -15,7 +15,7 @@ export const ListNavs: FC = () => {
           <Link component={RouterLink} to={item.path} className={classes.tabs_menu_mdl_item_link}>
             <Stack direction="row" alignItems="center" gap="20px">
               {item.icon ? <item.icon /> : null}
-              <Typography fontSize={14} fontWeight={500}>
+              <Typography fontSize={14} fontWeight={500} noWrap>
                 {item.name}
               </Typography>
             </Stack>

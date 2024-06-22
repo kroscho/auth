@@ -1,7 +1,6 @@
-import { Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-export const useStyles = makeStyles((theme: Theme) => {
+export const useStyles = makeStyles(() => {
   //   const isLight = theme.palette.mode === 'light';
 
   return {
@@ -10,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       alignItems: 'center',
       justifyContent: 'center',
       height: '40px',
-      width: 'calc(100%/3)',
+      minWidth: '110px',
     },
   };
 });
