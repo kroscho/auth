@@ -1,15 +1,15 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
-import { MainBrands, MainSlider } from '../../widgets/main/ui';
+import { MainBrands, MainNewProducts, MainPopularCategories, MainSlider } from '../../widgets/main/ui';
 
 const MainPage: FC = () => {
   return (
     <Box>
       <MainSlider></MainSlider>
       <MainBrands></MainBrands>
-      {/*<MainPopularCats></MainPopularCats>
-      <MainProducts></MainProducts>
-      <MainBlog></MainBlog>
+      <MainPopularCategories></MainPopularCategories>
+      <MainNewProducts></MainNewProducts>
+      {/* <MainBlog></MainBlog>
       <MainAbout></MainAbout> */}
     </Box>
   );
