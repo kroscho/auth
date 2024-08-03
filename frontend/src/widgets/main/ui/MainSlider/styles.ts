@@ -7,7 +7,6 @@ export const useStyles = makeStyles((theme: Theme) => {
   return {
     container: {
       width: '100%',
-      maxHeight: '420px',
     },
 
     image: {

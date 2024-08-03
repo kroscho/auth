@@ -1,2 +1,2 @@
-export { MainSliderImagesPublic } from './public';
+export * from './public';
 export * from './sizes';
